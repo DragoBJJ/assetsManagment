@@ -7,7 +7,7 @@ public class Asset
   public string Description { get; set; } = default!;
   public AssetType Category { get; set; } = default!;
   public Address? Address { get; set; } = default!;
-  public List<Material> Materials { get; set; } = new();
+  public List<Material> Materials { get; set; } = [];
   public bool IsSold { get; set; }
   public int Space { get; set; } = default!;
 
