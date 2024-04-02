@@ -1,4 +1,6 @@
 ﻿
+using Assets.Domain.Repositories;
+using Assets.Infrastructure.Repositories;
 using Assets.Infrastructure.Seeders;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -13,7 +15,9 @@ namespace Assets.Infrastructure.Extensions
         {
             var connectionString = configuration.GetConnectionString("AssetDB");
             services.AddDbContext<AssetsDbContext>(options=> options.UseSqlServer(connectionString));
+
             services.AddScoped<IAssetSeeders, AssetSeeders>();
+            services.AddScoped<IAssetRepository, AssetRepository>();
         }
     }
 }

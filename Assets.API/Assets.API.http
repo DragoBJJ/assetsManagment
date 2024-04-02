@@ -1,6 +1,11 @@
-@Assets.API_HostAddress = http://localhost:5181
+@Assets.API_HostAddress = https://localhost:7270
 
-GET {{Assets.API_HostAddress}}/weatherforecast/
-Accept: application/json
+
+GET {{Assets.API_HostAddress}}/api/assets
+
+###
+
+
+GET {{Assets.API_HostAddress}}/api/assets/1
 
 ###

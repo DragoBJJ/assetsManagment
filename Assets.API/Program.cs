@@ -1,4 +1,5 @@
 using Assets.Infrastructure.Extensions;
+using Assets.Application.Extensions;
 using Assets.Infrastructure.Seeders;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
