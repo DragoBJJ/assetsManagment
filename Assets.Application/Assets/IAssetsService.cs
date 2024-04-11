@@ -1,6 +1,4 @@
 ﻿using Assets.Application.Assets.DTO;
-using Assets.Domain;
-
 namespace Assets.Application.Assets
 {
     public interface IAssetsService
@@ -8,5 +6,7 @@ namespace Assets.Application.Assets
         Task<IEnumerable<AssetDTO>> GetAllAssets();
 
         Task<AssetDTO?> GetAssetByID(int id);
+
+        Task<int> CreateAsset(CreateAssetDTO assetDto);
     }
 }

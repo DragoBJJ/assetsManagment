@@ -9,6 +9,7 @@ namespace Assets.Application.Extensions
 
         {
             services.AddScoped<IAssetsService, AssetsService>();
-        }
+            services.AddAutoMapper(typeof(ServiceCollectionExtensions).Assembly);
     }
+        }
 }

@@ -6,7 +6,6 @@ namespace Assets.Application.Assets.DTO
 {
     public class AssetDTO
     {
-        public int Id { get; set; }
         public string Name { get; set; } = default!;
         public string Description { get; set; } = default!;
         public AssetType Category { get; set; } = default!;
@@ -27,7 +26,6 @@ namespace Assets.Application.Assets.DTO
             {
                 Category = a.Category,
                 Description = a.Description,
-                Id = a.Id,
                 Name = a.Name,
                 City = a.Address?.City,
                 Street = a.Address?.Street,

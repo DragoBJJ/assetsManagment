@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Assets.Application.Assets;
+using Assets.Application.Assets.DTO;
 
 namespace Assets.API.Controllers
 {
@@ -26,6 +27,15 @@ namespace Assets.API.Controllers
             }
 
             return Ok(asset);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateAsset(CreateAssetDTO assetDto)
+        {
+
+            int id = await assetsService.CreateAsset(assetDto);
+
+            return CreatedAtAction(nameof(GetByID), new { id }, null);
         }
 
     }
