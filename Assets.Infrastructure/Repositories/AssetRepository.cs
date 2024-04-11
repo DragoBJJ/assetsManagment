@@ -14,7 +14,7 @@ namespace Assets.Infrastructure.Repositories
 
         public async Task<Asset?> GetByIDAsync(int id)
         {
-            return await dbContext.Assets.FirstOrDefaultAsync(a => a.Id == id); 
+            return await dbContext.Assets.Include(a=> a.Materials).FirstOrDefaultAsync(a => a.Id == id);
         }
     }
 }

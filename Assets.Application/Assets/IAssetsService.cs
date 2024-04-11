@@ -1,11 +1,12 @@
-﻿using Assets.Domain;
+﻿using Assets.Application.Assets.DTO;
+using Assets.Domain;
 
 namespace Assets.Application.Assets
 {
     public interface IAssetsService
     {
-        Task<IEnumerable<Asset>> GetAllAssets();
+        Task<IEnumerable<AssetDTO>> GetAllAssets();
 
-        Task<Asset?> GetAssetByID(int id);
+        Task<AssetDTO?> GetAssetByID(int id);
     }
 }
