@@ -25,3 +25,21 @@ Content-Type: application/json
 }
 
 ###
+
+
+POST {{Assets.API_HostAddress}}/register
+Content-Type: application/json
+
+{
+    "email": "testuser@test.gmail",
+    "password": "Password1$"
+}
+###
+
+POST {{Assets.API_HostAddress}}/login
+Content-Type: application/json
+
+{
+    "email": "testuser@test.gmail",
+    "password": "Password1$asdasd"
+}

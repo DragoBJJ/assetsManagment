@@ -1,8 +1,10 @@
 ﻿using Assets.Domain;
+using Assets.Domain.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Assets.Infrastructure;
-internal class AssetsDbContext(DbContextOptions<AssetsDbContext> options) : DbContext(options)
+public class AssetsDbContext(DbContextOptions<AssetsDbContext> options) : IdentityDbContext<User>(options)
 
 {
     internal DbSet<Asset> Assets { get; set; }
