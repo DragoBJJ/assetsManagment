@@ -3,41 +3,13 @@ using Assets.Application.Extensions;
 using Assets.Infrastructure.Seeders;
 using Assets.Domain.Entities;
 using Assets.Infrastructure;
-using Microsoft.OpenApi.Models;
+using Assets.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.AddSecurityDefinition("bearerAuth", new OpenApiSecurityScheme
-    {
-        Type = SecuritySchemeType.Http,
-        Scheme = "Bearer",
-    });
-
-    c.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.SecurityScheme, Id =  "bearerAuth"
-                },
-            },
-            []
-        }
-    });
-});
-builder.Services.AddEndpointsApiExplorer();
-
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
-builder.Services.AddIdentityApiEndpoints<User>().AddEntityFrameworkStores<AssetsDbContext>();
-
+builder.AddPresentation();
 
 var app = builder.Build();
 
