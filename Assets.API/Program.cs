@@ -2,20 +2,20 @@ using Assets.Infrastructure.Extensions;
 using Assets.Application.Extensions;
 using Assets.Infrastructure.Seeders;
 using Assets.Domain.Entities;
-using Assets.Infrastructure;
 using Assets.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddPresentation();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
-builder.AddPresentation();
+
 
 var app = builder.Build();
 
 var scope = app.Services.CreateScope();
-var seeder = scope.ServiceProvider.GetRequiredService<IAssetSeeders>();
 
+var seeder = scope.ServiceProvider.GetRequiredService<IAssetSeeders>();
 await seeder.Seed();
 
 

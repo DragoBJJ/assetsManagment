@@ -15,13 +15,7 @@ POST {{Assets.API_HostAddress}}/api/assets
 Content-Type: application/json
 
 {
-        "Name": "Jean Clode Van-Dame",
-         "Description": "Elegancki Ivan's House",
-         "Category": 2,
-         "Space": 250,
-         "City": "Poznan",
-         "Street": "Bernata",
-         "PostalCode": "63-430"  
+ 
 }
 
 ###
