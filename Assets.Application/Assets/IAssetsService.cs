@@ -7,6 +7,6 @@ namespace Assets.Application.Assets
 
         Task<AssetDTO?> GetAssetByID(int id);
 
-        Task<int> CreateAsset(CreateAssetDTO assetDto);
+         Task<int?> CreateAsset(CreateAssetDTO assetDto);
     }
 }

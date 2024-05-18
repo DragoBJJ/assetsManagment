@@ -9,12 +9,14 @@ public class AssetProfile: Profile
     public AssetProfile()
     {
         CreateMap<CreateAssetDTO, Asset>()
-            .ForMember(d => d.Address, opt => opt.MapFrom(src => new Address
-            {
-                 City = src.City,
-                 PostalCode = src.PostalCode,
-                 Street = src.Street,
-            }));
+            .ForMember(d => d.Address, opt => opt.MapFrom(
+                src => new Address
+                {
+                    City = src.City,
+                    PostalCode = src.PostalCode,
+                    Street = src.Street,
+
+                }));
 
         CreateMap<Asset, AssetDTO>()
             .ForMember(d => d.City, opt => opt.MapFrom(src => src.Address == null ? null : src.Address.City))

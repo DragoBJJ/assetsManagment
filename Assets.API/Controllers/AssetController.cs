@@ -30,12 +30,15 @@ namespace Assets.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateAsset(CreateAssetDTO assetDto)
+        public async Task<IActionResult> CreateAsset(CreateAssetDTO createAssetDto)
         {
+              var id = await assetsService.CreateAsset(createAssetDto);
 
-            int id = await assetsService.CreateAsset(assetDto);
-
-            return CreatedAtAction(nameof(GetByID), new { id }, null);
+            if (id == null)
+            {
+                return BadRequest($"Cannot Create Asset: {createAssetDto.Name}");
+            }
+            return CreatedAtAction(nameof(GetByID), new { id}, null);    
         }
 
     }

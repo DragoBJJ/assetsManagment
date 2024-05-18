@@ -20,27 +20,5 @@ namespace Assets.Application.Assets.DTO
         public string? Street { get; set; }
         [RegularExpression(@"^\d{2}-\d{3}$", ErrorMessage = "Please provide a valid postal code (XX-XXX).")]
         public string? PostalCode { get; set; }
-
-        public static Asset? FromCreateAssetDto(CreateAssetDTO? dto)
-        {
-            if (dto == null)
-            {
-                return null;
-            }
-
-            return new Asset()
-            {
-                Name = dto.Name,
-                Description = dto.Description,
-                Category = dto.Category,
-                Space = dto.Space,  
-                Address = new Address
-                {
-                    City = dto.City,
-                    Street = dto.Street,
-                    PostalCode = dto.PostalCode,
-                }
-            };
         }
     }
-}

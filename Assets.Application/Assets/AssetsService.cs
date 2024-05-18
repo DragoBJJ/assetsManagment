@@ -1,4 +1,5 @@
 ﻿using Assets.Application.Assets.DTO;
+using Assets.Domain;
 using Assets.Domain.Repositories;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
@@ -32,20 +33,13 @@ internal class AssetsService(IAssetRepository assetRepository, ILogger<AssetsSer
 
     }
 
-    public Task<int>? CreateAsset(CreateAssetDTO assetDto)
+    public async Task<int?> CreateAsset(CreateAssetDTO assetDto)
     {
         logger.LogInformation($"Creating a new Asset: {assetDto}");
 
-        var asset = CreateAssetDTO.FromCreateAssetDto(assetDto);
+        var asset = mapper.Map<Asset>(assetDto);
 
-        if (asset == null)
-        {
-            return null;
-        }
-
-         var assetID = assetRepository.Create(asset);
-        return assetID; 
+        var id = await assetRepository.Create(asset);
+        return id;
     }
-
-
 }
