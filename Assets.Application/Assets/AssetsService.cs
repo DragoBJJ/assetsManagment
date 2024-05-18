@@ -1,5 +1,4 @@
 ﻿using Assets.Application.Assets.DTO;
-using Assets.Domain;
 using Assets.Domain.Repositories;
 using AutoMapper;
 using Microsoft.Extensions.Logging;
@@ -13,7 +12,7 @@ internal class AssetsService(IAssetRepository assetRepository, ILogger<AssetsSer
         logger.LogInformation($"Getting All Assets");
         var assets = await assetRepository.GetAllAsync();
 
-        var assetsDTO = assets.Select(AssetDTO.FromEntity);
+        var assetsDTO = mapper.Map<List<AssetDTO>>(assets);
 
         return assetsDTO!;
     }
@@ -28,7 +27,7 @@ internal class AssetsService(IAssetRepository assetRepository, ILogger<AssetsSer
             return null;
         }
 
-        var assetDTO = AssetDTO.FromEntity(asset);
+        var assetDTO = mapper.Map<AssetDTO>(asset);
         return assetDTO;
 
     }
