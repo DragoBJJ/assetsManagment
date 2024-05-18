@@ -30,7 +30,7 @@ namespace Assets.Infrastructure.Seeders
         new()
             {
                 Name = "Drago House",
-                Category = AssetType.House,
+                Category = "House",
                 Description =
                     "Modern house with beautiful interior, ideal for those who appreciate modernity and comfort. It is located in the prestigious neighborhood of Birch Meadow, offering peace and comfort.",
                 IsSold = false,
@@ -62,7 +62,7 @@ namespace Assets.Infrastructure.Seeders
             new ()
             {
                 Name = "Ivan Office",
-                Category = AssetType.Office,
+                Category = "Office",
                 Description =
                     "Spacious ground-floor office with a charming fireplace, ideal for families who value comfort and functionality. Situated in the picturesque Stefanów neighborhood, providing tranquility and proximity to nature.",
                 IsSold = true,

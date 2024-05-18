@@ -15,7 +15,13 @@ POST {{Assets.API_HostAddress}}/api/assets
 Content-Type: application/json
 
 {
- 
+  "Name": "Drago Zakopane House",
+  "Description": "Modern house with beautiful interior, ideal for those who appreciate modernity and comfort. It is located in the prestigious neighborhood of Birch Meadow, offering peace and comfort.",
+   "Category": "Housea",
+   "City": "London",
+   "Street": "Cork St 5",
+   "PostalCode": "10-100",
+   "Space": 250
 }
 
 ###

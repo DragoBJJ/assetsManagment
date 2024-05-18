@@ -9,25 +9,16 @@ namespace Assets.Application.Assets.Validators;
 
 public class CreateAssetDTOValidator: AbstractValidator<CreateAssetDTO>
 {
-/*
-        private readonly List<string> validCategories = ["House", "Apartament", "Office", "Store"];*/
-      public CreateAssetDTOValidator() {
+
+    private readonly List<string> validCategories = ["House", "Apartament", "Office", "Store"];
+    public CreateAssetDTOValidator() {
 
         RuleFor(dto => dto.Name)
             .Length(3, 100);
-        /*
-                RuleFor(dto => dto.Category)
-                    .Custom((value, context) =>
-                    {
-                        var isValidCategory = validCategories.Contains(value);
 
-                        if (!isValidCategory)
-                        {
-                            context.AddFailure("Category", "Invalid category.Please choose from the valid vategories");
-                        }
-                    });
-        */
-
+        RuleFor(dto => dto.Category)
+            .Must(validCategories.Contains)
+            .WithMessage($"Invalid category. Please choose from the valid categories: {string.Join(", ", validCategories)}");
 
         RuleFor(dto => dto.Category)
        .NotEmpty().WithMessage("Category is required.");
