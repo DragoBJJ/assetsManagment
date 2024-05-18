@@ -56,7 +56,7 @@ namespace Assets.Infrastructure.Seeders
                 {
                     City = "London",
                     Street = "Cork St 5",
-                    PostalCode = "WC2N 5DU"
+                    PostalCode = "10-100"
                 }
             },
             new ()
@@ -78,7 +78,7 @@ namespace Assets.Infrastructure.Seeders
                 {
                     City = "London",
                     Street = "Boots 193",
-                    PostalCode = "W1F 8SR"
+                    PostalCode = "10-100"
                 }
             }
     ];
