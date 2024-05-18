@@ -1,4 +1,5 @@
-﻿using Assets.Application.Assets.DTO;
+﻿using Assets.Application.Assets.Commands.CreateAsset;
+using Assets.Application.Assets.DTO;
 using Assets.Domain;
 using AutoMapper;
 
@@ -8,7 +9,7 @@ public class AssetProfile: Profile
 
     public AssetProfile()
     {
-        CreateMap<CreateAssetDTO, Asset>()
+        CreateMap<CreateAssetCommand, Asset>()
             .ForMember(d => d.Address, opt => opt.MapFrom(
                 src => new Address
                 {
