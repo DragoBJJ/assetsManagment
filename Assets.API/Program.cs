@@ -2,6 +2,7 @@ using Assets.Infrastructure.Extensions;
 using Assets.Application.Extensions;
 using Assets.Domain.Entities;
 using Assets.API.Extensions;
+using Assets.Infrastructure.Seeders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,11 +15,11 @@ var app = builder.Build();
 
 var scope = app.Services.CreateScope();
 
-/*var seeder = scope.ServiceProvider.GetRequiredService<IAssetSeeders>();
-await seeder.Seed();*/
+var seeder = scope.ServiceProvider.GetRequiredService<IAssetSeeders>();
+await seeder.Seed();
 
 
-  app.UseSwagger();
+app.UseSwagger();
   app.UseSwaggerUI();
 
 
