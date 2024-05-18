@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Assets.Application.Assets;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 
@@ -12,8 +11,7 @@ namespace Assets.Application.Extensions
         {
             var applicationAssembly = typeof(ServiceCollection).Assembly;
 
-            services.AddScoped<IAssetsService, AssetsService>();
-
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(applicationAssembly));
             services.AddAutoMapper(applicationAssembly);
             services.AddValidatorsFromAssembly(applicationAssembly).AddFluentValidationAutoValidation();
     }

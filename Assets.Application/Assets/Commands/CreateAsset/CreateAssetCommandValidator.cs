@@ -1,17 +1,14 @@
 ﻿
-using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-using Assets.Application.Assets.DTO;
-using Assets.Domain;
 using FluentValidation;
 
-namespace Assets.Application.Assets.Validators;
+namespace Assets.Application.Assets.Commands.CreateAsset;
 
-public class CreateAssetDTOValidator: AbstractValidator<CreateAssetDTO>
+public class CreateAssetCommandValidator : AbstractValidator<CreateAssetCommand>
 {
 
     private readonly List<string> validCategories = ["House", "Apartament", "Office", "Store"];
-    public CreateAssetDTOValidator() {
+    public CreateAssetCommandValidator()
+    {
 
         RuleFor(dto => dto.Name)
             .Length(3, 100);
@@ -32,6 +29,6 @@ public class CreateAssetDTOValidator: AbstractValidator<CreateAssetDTO>
 
         RuleFor(dto => dto.PostalCode)
             .Matches(@"^\d{2}-\d{3}$").WithMessage("Please provide a valid postal code (XX-XXX).");
-    }  
     }
+}
 
