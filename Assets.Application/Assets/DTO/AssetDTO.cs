@@ -9,7 +9,7 @@ namespace Assets.Application.Assets.DTO
         public int Id { get; set; }
         public string Name { get; set; } = default!;
         public string Description { get; set; } = default!;
-        public AssetType Category { get; set; } = default!;
+        public string Category { get; set; } = default!;
         public string? City { get; set; }
         public string? Street { get; set; }
         public string? PostalCode { get; set; }
