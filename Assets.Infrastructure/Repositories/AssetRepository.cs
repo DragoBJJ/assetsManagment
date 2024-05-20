@@ -15,6 +15,12 @@ namespace Assets.Infrastructure.Repositories
             return entity.Id;
         }
 
+        public async Task Delete(Asset entity)
+        {
+            dbContext.Assets.Remove(entity);
+            await dbContext.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<Asset>> GetAllAsync()
         {
             return await dbContext.Assets.ToListAsync();
@@ -24,5 +30,8 @@ namespace Assets.Infrastructure.Repositories
         {
             return await dbContext.Assets.Include(a=> a.Materials).FirstOrDefaultAsync(a => a.Id == id);
         }
+
+        public async Task SaveChanges() => await dbContext.SaveChangesAsync();  
+        
     }
 }

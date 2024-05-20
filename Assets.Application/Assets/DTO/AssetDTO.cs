@@ -1,7 +1,4 @@
-﻿
-using Assets.Application.Materials.DTO;
-using Assets.Domain;
-
+﻿using Assets.Application.Materials.DTO;
 namespace Assets.Application.Assets.DTO
 {
     public class AssetDTO

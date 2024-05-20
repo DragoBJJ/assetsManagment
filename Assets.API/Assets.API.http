@@ -26,6 +26,17 @@ Content-Type: application/json
 
 ###
 
+PATCH {{Assets.API_HostAddress}}/api/assets/1
+Content-Type: application/json
+
+{
+   "Name": "Dr",
+   "Description": "Modern house with beautiful interior, ideal for those who appreciate modernity and comfort",
+   "Space": 600
+}
+
+###
+
 
 POST {{Assets.API_HostAddress}}/register
 Content-Type: application/json

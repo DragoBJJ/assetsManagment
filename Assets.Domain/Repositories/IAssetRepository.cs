@@ -7,5 +7,9 @@ public interface IAssetRepository
     Task<Asset?> GetByIDAsync(int id);
 
      Task<int> Create(Asset entity);
+
+    Task SaveChanges();
+
+    Task Delete(Asset entity);
 }
     
