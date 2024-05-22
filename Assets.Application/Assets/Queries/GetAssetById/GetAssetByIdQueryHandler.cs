@@ -10,7 +10,7 @@ namespace Assets.Application.Assets.Queries.GetAssetById
     {
         public async Task<AssetDTO?> Handle(GetAssetByIdQuery request, CancellationToken cancellationToken)
         {
-            logger.LogInformation($"Getting Asset by ID: {request}");
+            logger.LogInformation("Getting Asset by ID: {@requestId}", request.Id);
             var asset = await assetRepository.GetByIDAsync(request.Id);
 
             if (asset == null)

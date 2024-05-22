@@ -10,7 +10,7 @@ namespace Assets.Application.Assets.Commands.CreateAsset
     {
         public async Task<int> Handle(CreateAssetCommand request, CancellationToken cancellationToken)
         {
-            logger.LogInformation($"Creating a new Asset: {request}");
+            logger.LogInformation("Creating a new Asset: {@Asset}",request);
 
             var asset = mapper.Map<Asset>(request);
 

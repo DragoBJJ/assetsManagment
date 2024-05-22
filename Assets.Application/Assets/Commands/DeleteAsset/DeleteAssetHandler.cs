@@ -11,7 +11,7 @@ namespace Assets.Application.Assets.Commands.DeleteAsset
     {
         public  async Task<bool> Handle(DeleteAssetCommand request, CancellationToken cancellationToken)
         {
-            logger.LogInformation($"Deleting asset with id: {request.Id}");
+            logger.LogInformation("Deleting asset with id: {@AssetId}",request.Id);
 
             var asset = await assetRepository.GetByIDAsync(request.Id);
 

@@ -10,7 +10,7 @@ namespace Assets.Application.Assets.Commands.UpdateAsset
     {
         public async Task<AssetDTO?> Handle(UpdateAssetCommand request, CancellationToken cancellationToken)
         {
-            logger.LogInformation($"Update asset by id: {request.Id}");
+            logger.LogInformation("Update asset by id: {@AssetId} with {@updatedAsset}", request.Id, request);
 
             var asset = await assetRepository.GetByIDAsync(request.Id);
 

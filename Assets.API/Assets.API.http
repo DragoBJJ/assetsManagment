@@ -7,7 +7,7 @@ GET {{Assets.API_HostAddress}}/api/assets
 ###
 
 
-GET {{Assets.API_HostAddress}}/api/assets/1007
+GET {{Assets.API_HostAddress}}/api/assets/1
 
 ###
 
@@ -30,9 +30,9 @@ PATCH {{Assets.API_HostAddress}}/api/assets/1
 Content-Type: application/json
 
 {
-   "Name": "Dr",
+   "Name": "Drago Castle",
    "Description": "Modern house with beautiful interior, ideal for those who appreciate modernity and comfort",
-   "Space": 600
+   "Space": 200
 }
 
 ###
