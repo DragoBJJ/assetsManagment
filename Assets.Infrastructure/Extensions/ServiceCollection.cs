@@ -14,9 +14,8 @@ namespace Assets.Infrastructure.Extensions
 
         {
             var connectionString = configuration.GetConnectionString("AssetDB");
-            services.AddDbContext<AssetsDbContext>(options => options.UseSqlServer(connectionString).EnableSensitiveDataLogging());
-
-           
+            services.AddDbContext<AssetsDbContext>(options =>
+            options.UseSqlServer(connectionString).EnableSensitiveDataLogging());
 
             services.AddScoped<IAssetSeeders, AssetSeeders>();
             services.AddScoped<IAssetRepository, AssetRepository>();

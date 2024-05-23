@@ -1,9 +1,9 @@
 ﻿using Assets.Application.Assets.Commands.CreateAsset;
 using Assets.Application.Assets.Commands.DeleteAsset;
 using Assets.Application.Assets.Commands.UpdateAsset;
+using Assets.Application.Assets.DTO;
 using Assets.Application.Assets.Queries.GetAllAssets;
 using Assets.Application.Assets.Queries.GetAssetById;
-using Assets.Domain;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,7 +15,7 @@ namespace Assets.API.Controllers
     public class AssetController(IMediator mediator) : ControllerBase
     {
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<ActionResult<IEnumerable<AssetDTO>>> GetAll()
         {
             var assets = await mediator.Send(new GetAllAssetsQuery());       
             return Ok(assets);
@@ -23,30 +23,20 @@ namespace Assets.API.Controllers
 
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetByID([FromRoute] int id)
+        public async Task<ActionResult<AssetDTO?>> GetByID([FromRoute] int id)
         {
-            var asset = await mediator.Send(new GetAssetByIdQuery(id));
-
-            if(asset is null)
-            {
-                return NotFound($"Asset by ID: {id} Not found");
-            }
-
-           
-            return Ok(asset);
+         
+                var asset = await mediator.Send(new GetAssetByIdQuery(id));
+                return Ok(asset);
+          
         }
 
         [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeleteAsset([FromRoute] int id)
         {
-            var isDeleted = await mediator.Send(new DeleteAssetCommand(id));
-
-            if (isDeleted is false)
-            {
-                return NotFound($"Asset by ID: {id} Not found");
-            }
-
-
+            await mediator.Send(new DeleteAssetCommand(id));
             return NoContent();
         }
 
@@ -58,17 +48,13 @@ namespace Assets.API.Controllers
         }
 
         [HttpPatch("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> UpdateAsset([FromRoute] int id, UpdateAssetCommand command)
         {  
                 command.Id = id;
                 var assetDto = await mediator.Send(command);
-
-                if (assetDto is null)
-                    {
-                    return NotFound($"Asset by ID: {id} Not found");
-            }
-
-            return  Ok(assetDto);
+                 return  Ok(assetDto);
         }
 
     }

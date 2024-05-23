@@ -1,4 +1,5 @@
-﻿using Assets.Domain.Entities;
+﻿using Assets.API.Middlewares;
+using Assets.Domain.Entities;
 using Assets.Infrastructure;
 using Microsoft.OpenApi.Models;
 
@@ -6,12 +7,17 @@ namespace Assets.API.Extensions
 {
     public static class BuilderExtensions
     {
-        public static void AddPresentation(this WebApplicationBuilder builder)
+        public static void AddPresentation(this IServiceCollection services)
         {
-   
-            builder.Services.AddIdentityApiEndpoints<User>().AddEntityFrameworkStores<AssetsDbContext>();
-            builder.Services.AddControllers();
-            builder.Services.AddSwaggerGen(c =>
+
+            services.AddIdentityApiEndpoints<User>().AddEntityFrameworkStores<AssetsDbContext>();
+
+            services.AddScoped<ErrorHandlingMiddleware>();
+            services.AddScoped<TotalExecutedTimeMiddleware>();
+
+            services.AddControllers();
+            services.AddSwaggerGen();
+            services.AddSwaggerGen(c =>
             {
                 c.AddSecurityDefinition("bearerAuth", new OpenApiSecurityScheme
                 {
@@ -33,7 +39,7 @@ namespace Assets.API.Extensions
         }
     });
             });
-            builder.Services.AddEndpointsApiExplorer();
+            services.AddEndpointsApiExplorer();
         }
 
     }
