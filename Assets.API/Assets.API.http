@@ -1,5 +1,7 @@
 @Assets.API_HostAddress = https://localhost:7270
 
+
+// Assets
 ###
 
 GET {{Assets.API_HostAddress}}/api/assets
@@ -37,7 +39,7 @@ Content-Type: application/json
 
 ###
 
-
+// Authentication
 POST {{Assets.API_HostAddress}}/register
 Content-Type: application/json
 
@@ -53,4 +55,17 @@ Content-Type: application/json
 {
     "email": "testuser@test.gmail",
     "password": "Password1$"
+}
+
+
+// Materials
+### 
+POST {{Assets.API_HostAddress}}/api/assets/11/dishes
+Content-Type: application/json
+
+{
+  "name": "drewo",
+  "description": "Wood is a structural tissue found in the stems and roots of trees and other woody plants. It is an organic materia",
+  "price": 150,
+  "origin": "europe"
 }

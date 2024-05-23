@@ -12,7 +12,7 @@ namespace Assets.API.Controllers
 {
     [ApiController]
     [Route("api/assets")]
-    public class AssetController(IMediator mediator) : ControllerBase
+    public class AssetsController(IMediator mediator) : ControllerBase
     {
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AssetDTO>>> GetAll()

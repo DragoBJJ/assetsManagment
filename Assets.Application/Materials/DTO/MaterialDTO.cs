@@ -3,7 +3,6 @@ namespace Assets.Application.Materials.DTO
 {
     public class MaterialDTO
     {
-        public int AssetId { get; set; }
         public int Id { get; set; }
         public string Name { get; set; } = default!;
         public string Description { get; set; } = default!;

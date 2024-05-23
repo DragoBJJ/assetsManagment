@@ -1,4 +1,5 @@
 ﻿
+using Assets.Application.Materials.Commands.CreateMaterial;
 using AutoMapper;
 
 namespace Assets.Application.Materials.DTO
@@ -8,6 +9,7 @@ namespace Assets.Application.Materials.DTO
     {
         public MaterialProfile()
         {
+            CreateMap<CreateMaterialCommand, Material>();
             CreateMap<Material, MaterialDTO>();
         }
     }
