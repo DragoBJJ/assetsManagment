@@ -5,30 +5,38 @@ using Assets.API.Extensions;
 using Assets.Infrastructure.Seeders;
 using Serilog;
 using Serilog.Formatting.Compact;
+using Assets.API.Middlewares;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 new CompactJsonFormatter();
 
-builder.AddPresentation();
+
+builder.Services.AddPresentation();
 builder.Services.AddApplication();
 builder.Services.AddInfrastructure(builder.Configuration);
-builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration)
-);
+
+builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
 
 
 var app = builder.Build();
-
-
 var scope = app.Services.CreateScope();
+
 
 var seeder = scope.ServiceProvider.GetRequiredService<IAssetSeeders>();
 await seeder.Seed();
 
 
-app.UseSwagger();
-app.UseSwaggerUI();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
+app.UseMiddleware<TotalExecutedTimeMiddleware>();
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 
 app.UseSerilogRequestLogging();

@@ -1,4 +1,6 @@
 ﻿using Assets.Application.Assets.DTO;
+using Assets.Domain;
+using Assets.Domain.Exceptions;
 using Assets.Domain.Repositories;
 using AutoMapper;
 using MediatR;
@@ -8,7 +10,7 @@ namespace Assets.Application.Assets.Commands.UpdateAsset
 {
     public class UpdateAssetHandler(ILogger<UpdateAssetHandler> logger, IMapper mapper, IAssetRepository assetRepository) : IRequestHandler<UpdateAssetCommand, AssetDTO>
     {
-        public async Task<AssetDTO?> Handle(UpdateAssetCommand request, CancellationToken cancellationToken)
+        public async Task<AssetDTO> Handle(UpdateAssetCommand request, CancellationToken cancellationToken)
         {
             logger.LogInformation("Update asset by id: {@AssetId} with {@updatedAsset}", request.Id, request);
 
@@ -16,7 +18,7 @@ namespace Assets.Application.Assets.Commands.UpdateAsset
 
             if(asset is null )
             {
-                return null;
+                throw new NotFoundException(nameof(Asset), request.Id.ToString());
             }
 
 
