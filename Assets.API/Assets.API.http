@@ -1,19 +1,15 @@
-@Assets.API_HostAddress = https://localhost:7270
+@Assets_API_HostAddress = https://localhost:7270
 
 
 // Assets
-###
-
-GET {{Assets.API_HostAddress}}/api/assets
+GET {{Assets_API_HostAddress}}/api/assets
 
 ###
+GET {{Assets_API_HostAddress}}/api/assets/1
 
-
-GET {{Assets.API_HostAddress}}/api/assets/1
 
 ###
-
-POST {{Assets.API_HostAddress}}/api/assets
+POST {{Assets_API_HostAddress}}/api/assets
 Content-Type: application/json
 
 {
@@ -25,10 +21,9 @@ Content-Type: application/json
    "PostalCode": "10-100",
    "Space": 250
 }
-
 ###
 
-PATCH {{Assets.API_HostAddress}}/api/assets/1
+PATCH {{Assets_API_HostAddress}}/api/assets/1
 Content-Type: application/json
 
 {
@@ -40,7 +35,7 @@ Content-Type: application/json
 ###
 
 // Authentication
-POST {{Assets.API_HostAddress}}/register
+POST {{Assets_API_HostAddress}}/register
 Content-Type: application/json
 
 {
@@ -49,7 +44,7 @@ Content-Type: application/json
 }
 ###
 
-POST {{Assets.API_HostAddress}}/login
+POST {{Assets_API_HostAddress}}/login
 Content-Type: application/json
 
 {
@@ -58,9 +53,9 @@ Content-Type: application/json
 }
 
 
+###
 // Materials
-### 
-POST {{Assets.API_HostAddress}}/api/assets/11/dishes
+POST {{Assets_API_HostAddress}}/api/assets/11/dishes
 Content-Type: application/json
 
 {
@@ -69,3 +64,12 @@ Content-Type: application/json
   "price": 150,
   "origin": "europe"
 }
+
+
+###
+GET {{Assets_API_HostAddress}}/api/assets/1/materials
+
+###
+GET {{Assets_API_HostAddress}}/api/assets/1/materials/1
+
+###
