@@ -2,7 +2,7 @@
 
 namespace Assets.Application.Materials.Commands.CreateMaterial
 {
-    public class CreateMaterialCommand: IRequest
+    public class CreateMaterialCommand: IRequest<int>
     {
         public int AssetId { get; set; }
         public string Name { get; set; } = default!;

@@ -5,7 +5,7 @@
 GET {{Assets_API_HostAddress}}/api/assets
 
 ###
-GET {{Assets_API_HostAddress}}/api/assets/1
+GET {{Assets_API_HostAddress}}/api/assets/1002
 
 
 ###
@@ -55,21 +55,34 @@ Content-Type: application/json
 
 ###
 // Materials
-POST {{Assets_API_HostAddress}}/api/assets/11/dishes
+POST {{Assets_API_HostAddress}}/api/assets/1002/materials
 Content-Type: application/json
 
 {
-  "name": "drewo",
+  "name": "wood",
   "description": "Wood is a structural tissue found in the stems and roots of trees and other woody plants. It is an organic materia",
-  "price": 150,
+  "price": 300,
   "origin": "europe"
 }
 
 
 ###
-GET {{Assets_API_HostAddress}}/api/assets/1/materials
+GET {{Assets_API_HostAddress}}/api/assets/1002/materials
 
 ###
-GET {{Assets_API_HostAddress}}/api/assets/1/materials/1
+GET {{Assets_API_HostAddress}}/api/assets/1002/materials/1005
 
 ###
+
+DELETE {{Assets_API_HostAddress}}/api/assets/1002/materials/1007
+
+###
+PATCH {{Assets_API_HostAddress}}/api/assets/1002/materials/1009
+Content-Type: application/json
+
+{
+  "name": "wood",
+  "description": "Elegancki Update",
+  "price": 500,
+  "origin": "europe"
+}

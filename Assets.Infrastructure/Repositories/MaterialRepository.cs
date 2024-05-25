@@ -12,24 +12,19 @@ namespace Assets.Infrastructure.Repositories
             return entity.Id;
         }
 
-        public Task Delete(Material entity)
+        public async Task DeleteAll(IEnumerable<Material> entities)
         {
-            throw new NotImplementedException();
+            dbContext.Materials.RemoveRange(entities);
+            await SaveChanges();
         }
 
-        public Task<IEnumerable<Material>> GetAllAsync()
+        public async Task Delete(Material entity)
         {
-            throw new NotImplementedException();
+            dbContext.Materials.Remove(entity);
+            await SaveChanges();    
         }
 
-        public Task<Asset?> GetByIDAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task SaveChanges()
-        {
-            throw new NotImplementedException();
-        }
+        public async Task SaveChanges() => await dbContext.SaveChangesAsync();
+        
     }
 }
