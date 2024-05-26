@@ -15,6 +15,7 @@ namespace Assets.API.Extensions
             services.AddScoped<ErrorHandlingMiddleware>();
             services.AddScoped<TotalExecutedTimeMiddleware>();
 
+            services.AddAuthentication();
             services.AddControllers();
             services.AddSwaggerGen();
             services.AddSwaggerGen(c =>

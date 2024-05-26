@@ -5,6 +5,7 @@ using Assets.Application.Assets.DTO;
 using Assets.Application.Assets.Queries.GetAllAssets;
 using Assets.Application.Assets.Queries.GetAssetById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -12,6 +13,7 @@ namespace Assets.API.Controllers
 {
     [ApiController]
     [Route("api/assets")]
+    [Authorize]
     public class AssetsController(IMediator mediator) : ControllerBase
     {
         [HttpGet]
@@ -25,7 +27,6 @@ namespace Assets.API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<AssetDTO?>> GetByID([FromRoute] int id)
         {
-         
                 var asset = await mediator.Send(new GetAssetByIdQuery(id));
                 return Ok(asset);
           
