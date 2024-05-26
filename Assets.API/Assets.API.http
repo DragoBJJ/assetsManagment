@@ -1,17 +1,17 @@
-@Assets.API_HostAddress = https://localhost:7270
+@Assets_API_HostAddress = https://localhost:7270
+@token = CfDJ8Et0ELM66M1HpWgm4Itvsa2rScw8YOxRLGKdQiOeBzJdzzaSYmzJQQpzHaUuHGX4uQ30nFuQHKp3XbAyPEuWG7ta6v5QCODFTJSAPRzw4znp5V3HqpydAUaKMApi8lE0jCcN6FgUX0OHlsfHjZmVE0hAkZNYF_sejtQEE23ugK4-TOYOClTxs_ZAN7Z2PXk7u-JZ-WBLMVzDypc4okCeCtFxo3IyuHkp7Rlgh-k3Rke0Cn4ghAbn22xNB8j-1zkW9uYjW9GG1lNZxzAvALdfZQAwggj_JQ03_ACXa-lJEYBSCppeuBabjMKZ2BUAfZLB3T5wc6RSI3W2UP1vXOUIiHHF3mJWEmHwFnNPqzg2vm5oku-dTP7Dxk5HxgFtL2k35JipdZqwk08NH7gXld3RZJomBoMaXhaaw9y550viuD3ioKEKUhLQYovlAlbUvOtUPrTQ-RyqhdVtXEl0Wq4s8S36OYBFNRFSnyFEFojzEYOwWVw4_ZhPtEBTqk591ub9od1qx4344sOgxJJBO-KK_QmnKP9nO3_C_cozGX1ISqc9U_hij3lK0sVw9uaMqvOobxh9LRu-9hLGp-Ouy9UZJBT8bfxXLlyCe4zpNvnGGP2eusTH3p225wWfi7EfTb7lYvChYEZjtqvy94FxGaVbcbCQB-NLeWQdaSLahf2UxrI4ylnjqKbS38AsKssbjOLDrsTHB9EOXINOZC_V-Uo4vbU
+
+
+// Assets
+GET {{Assets_API_HostAddress}}/api/assets
+Authorization: Bearer {{token}}
 
 ###
-
-GET {{Assets.API_HostAddress}}/api/assets
-
-###
-
-
-GET {{Assets.API_HostAddress}}/api/assets/1
+GET {{Assets_API_HostAddress}}/api/assets/1002
+Authorization: Bearer {{token}}
 
 ###
-
-POST {{Assets.API_HostAddress}}/api/assets
+POST {{Assets_API_HostAddress}}/api/assets
 Content-Type: application/json
 
 {
@@ -23,10 +23,9 @@ Content-Type: application/json
    "PostalCode": "10-100",
    "Space": 250
 }
-
 ###
 
-PATCH {{Assets.API_HostAddress}}/api/assets/1
+PATCH {{Assets_API_HostAddress}}/api/assets/1
 Content-Type: application/json
 
 {
@@ -37,20 +36,55 @@ Content-Type: application/json
 
 ###
 
+// Authentication
+POST {{Assets_API_HostAddress}}/register
+Content-Type: application/json
 
-POST {{Assets.API_HostAddress}}/register
+{
+    "email": "testuser@test.gmail",
+    "password": "aaaaaaaaa"
+}
+###
+
+POST {{Assets_API_HostAddress}}/api/identity/login
 Content-Type: application/json
 
 {
     "email": "testuser@test.gmail",
     "password": "Password1$"
 }
-###
 
-POST {{Assets.API_HostAddress}}/login
+
+###
+// Materials
+POST {{Assets_API_HostAddress}}/api/assets/1002/materials
 Content-Type: application/json
 
 {
-    "email": "testuser@test.gmail",
-    "password": "Password1$"
+  "name": "wood",
+  "description": "Wood is a structural tissue found in the stems and roots of trees and other woody plants. It is an organic materia",
+  "price": 300,
+  "origin": "europe"
+}
+
+
+###
+GET {{Assets_API_HostAddress}}/api/assets/1002/materials
+
+###
+GET {{Assets_API_HostAddress}}/api/assets/1002/materials/1005
+
+###
+
+DELETE {{Assets_API_HostAddress}}/api/assets/1002/materials/1007
+
+###
+PATCH {{Assets_API_HostAddress}}/api/assets/1002/materials/1009
+Content-Type: application/json
+
+{
+  "name": "wood",
+  "description": "Elegancki Update",
+  "price": 500,
+  "origin": "europe"
 }

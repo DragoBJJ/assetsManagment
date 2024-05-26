@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Assets.Application.Assets.Commands.DeleteAsset
 {
-    public class DeleteAssetHandler(ILogger<DeleteAssetCommand> logger, IMapper mapper, IAssetRepository assetRepository) : IRequestHandler<DeleteAssetCommand>
+    public class DeleteAssetHandler(ILogger<DeleteAssetCommand> logger, IAssetRepository assetRepository) : IRequestHandler<DeleteAssetCommand>
     {
         public async Task Handle(DeleteAssetCommand request, CancellationToken cancellationToken)
         {
