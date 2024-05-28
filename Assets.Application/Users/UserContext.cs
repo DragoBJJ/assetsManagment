@@ -1,7 +1,7 @@
 ﻿using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 
-namespace Assets.Application.User;
+namespace Assets.Application.Users;
 
 public interface IUserContext
 {
@@ -15,8 +15,8 @@ public interface IUserContext
 
             if (user.Identity == null || !user.Identity.IsAuthenticated) return null;
 
-            var userId = user.FindFirst(u => u.Type == ClaimTypes.NameIdentifier).Value;
-            var userEmail = user.FindFirst(u => u.Type == ClaimTypes.Email).Value;
+            var userId = user.FindFirst(u => u.Type == ClaimTypes.NameIdentifier)!.Value;
+            var userEmail = user.FindFirst(u => u.Type == ClaimTypes.Email)!.Value;
             var userRole = user.Claims.Where(u => u.Type == ClaimTypes.Role)!.Select(c => c.Value);
 
             return new CurrentUser(userId, userEmail, userRole);
