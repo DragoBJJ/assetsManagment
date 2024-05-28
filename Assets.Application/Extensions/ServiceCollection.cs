@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using Assets.Application.User;
-using static Assets.Application.User.IUserContext;
+using Assets.Application.Users;
+using static Assets.Application.Users.IUserContext;
 
 namespace Assets.Application.Extensions
 {
