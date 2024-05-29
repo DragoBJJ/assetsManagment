@@ -2,6 +2,7 @@
 using System.Collections;
 using Assets.Domain;
 using Assets.Domain.Repositories;
+using Assets.Domain.Specifications;
 using Assets.Infrastructure.Specifications;
 using Microsoft.EntityFrameworkCore;
 
@@ -33,9 +34,20 @@ namespace Assets.Infrastructure.Repositories
             return await dbContext.Assets.Include(a=> a.Materials).FirstOrDefaultAsync(a => a.Id == id);
         }
 
-        public List<Asset> GetAssets(Specification<Asset> specifications)
+        private IQueryable<Asset> ApplySpecification(Specification<Asset> specification)
         {
-            return  SpecificationQueryBuilder.GetQuery(dbContext.Assets, specifications).ToList();
+            return SpecificEvaluator.GetQuery(dbContext.Set<Asset>(), specification);
+        }
+
+
+        public async Task<Asset?> GetByIdSpecification(int assetId)
+        {
+            return  await ApplySpecification(new AssetByIdSpecification(assetId)).FirstOrDefaultAsync();  
+        }
+
+        public async Task<List<Asset>> GetByCategorySpecification(string name)
+        {
+            return await ApplySpecification(new AssetByCategorySpecification(name)).ToListAsync();
         }
 
         public async Task SaveChanges() => await dbContext.SaveChangesAsync();  
