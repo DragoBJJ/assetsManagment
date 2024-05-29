@@ -1,6 +1,4 @@
-﻿using Assets.Infrastructure.Specifications;
-
-namespace Assets.Domain.Repositories;
+﻿namespace Assets.Domain.Repositories;
 
 
 public interface IAssetRepository
@@ -9,9 +7,9 @@ public interface IAssetRepository
 
     Task<Asset?> GetByIDAsync(int id);
 
-    List<Asset> GetAssets(Specification<Asset> specification);
+    Task<List<Asset>> GetByCategory(string name);
 
-     Task<int> Create(Asset entity);
+    Task<int> Create(Asset entity);
 
     Task SaveChanges();
 

@@ -1,6 +1,4 @@
-﻿
-using System.Collections;
-using Assets.Domain;
+﻿using Assets.Domain;
 using Assets.Domain.Repositories;
 using Assets.Domain.Specifications;
 using Assets.Infrastructure.Specifications;
@@ -31,7 +29,7 @@ namespace Assets.Infrastructure.Repositories
 
         public async Task<Asset?> GetByIDAsync(int id)
         {
-            return await dbContext.Assets.Include(a=> a.Materials).FirstOrDefaultAsync(a => a.Id == id);
+            return await ApplySpecification(new AssetByIdSpecification(id)).FirstOrDefaultAsync();
         }
 
         private IQueryable<Asset> ApplySpecification(Specification<Asset> specification)
@@ -40,12 +38,7 @@ namespace Assets.Infrastructure.Repositories
         }
 
 
-        public async Task<Asset?> GetByIdSpecification(int assetId)
-        {
-            return  await ApplySpecification(new AssetByIdSpecification(assetId)).FirstOrDefaultAsync();  
-        }
-
-        public async Task<List<Asset>> GetByCategorySpecification(string name)
+        public async Task<List<Asset>> GetByCategory(string name)
         {
             return await ApplySpecification(new AssetByCategorySpecification(name)).ToListAsync();
         }

@@ -4,6 +4,7 @@ using Assets.Application.Assets.Commands.UpdateAsset;
 using Assets.Application.Assets.DTO;
 using Assets.Application.Assets.Queries.GetAllAssets;
 using Assets.Application.Assets.Queries.GetAssetById;
+using Assets.Application.Materials.Queries.GetByCategory;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -31,14 +32,15 @@ namespace Assets.API.Controllers
             return Ok(asset);
 
         }
-/*
-        [HttpGet("house")]
-        public async Task<ActionResult<List<Asset>>> GetHouseAssets()
+
+        [HttpGet("category/{category}")]
+        public async Task<ActionResult<List<AssetDTO>>> GetHouseAssets([FromRoute] string category)
 
         {
-            var spec = new HouseAssetsSpecification();
-     
-        }*/
+           
+           var assets = await mediator.Send(new GetByCategoryQuery(category));
+            return Ok(assets);       
+        }
 
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
