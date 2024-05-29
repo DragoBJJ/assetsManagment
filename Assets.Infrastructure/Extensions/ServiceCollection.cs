@@ -20,6 +20,8 @@ namespace Assets.Infrastructure.Extensions
             services.AddScoped<IAssetSeeders, AssetSeeders>();
             services.AddScoped<IAssetRepository, AssetRepository>();
             services.AddScoped<IMaterialRepository, MaterialRepository>();
+
+
         }
     }
 }

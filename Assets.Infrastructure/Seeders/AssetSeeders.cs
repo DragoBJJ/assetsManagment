@@ -1,7 +1,6 @@
-﻿
-
-
-using Assets.Domain;
+﻿using Assets.Domain;
+using Assets.Domain.Constants;
+using Microsoft.AspNetCore.Identity;
 
 namespace Assets.Infrastructure.Seeders
 {
@@ -20,9 +19,28 @@ namespace Assets.Infrastructure.Seeders
                     await dbContext.SaveChangesAsync();
                 }
 
+
+                if(!dbContext.Roles.Any())
+                {
+                     var roles = GetRoles();
+                    dbContext.Roles.AddRange(roles);
+                    await dbContext.SaveChangesAsync();
+                }
             }
         }
 
+        private IEnumerable<IdentityRole> GetRoles()
+        {
+            List<IdentityRole> roles = [
+                new (UserRole.User),
+                new (UserRole.Owner),
+                new (UserRole.Admin),
+
+            ];
+
+            return roles;
+        }
+ 
         private IEnumerable<Asset> GetAssets()
         {
 

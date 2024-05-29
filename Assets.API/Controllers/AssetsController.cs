@@ -19,7 +19,7 @@ namespace Assets.API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AssetDTO>>> GetAll()
         {
-            var assets = await mediator.Send(new GetAllAssetsQuery());       
+            var assets = await mediator.Send(new GetAllAssetsQuery());
             return Ok(assets);
         }
 
@@ -27,10 +27,18 @@ namespace Assets.API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<AssetDTO?>> GetByID([FromRoute] int id)
         {
-                var asset = await mediator.Send(new GetAssetByIdQuery(id));
-                return Ok(asset);
-          
+            var asset = await mediator.Send(new GetAssetByIdQuery(id));
+            return Ok(asset);
+
         }
+/*
+        [HttpGet("house")]
+        public async Task<ActionResult<List<Asset>>> GetHouseAssets()
+
+        {
+            var spec = new HouseAssetsSpecification();
+     
+        }*/
 
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

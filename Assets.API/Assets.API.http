@@ -36,12 +36,12 @@ Content-Type: application/json
 ###
 
 // Authentication
-POST {{Assets_API_HostAddress}}/register
+POST {{Assets_API_HostAddress}}/api/identity/register
 Content-Type: application/json
 
 {
-    "email": "testuser@test.gmail",
-    "password": "aaaaaaaaa"
+    "email": "owner@test.gmail",
+    "password": "Password1$"
 }
 ###
 
